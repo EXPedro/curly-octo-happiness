@@ -9,4 +9,5 @@
     <string name="add_items">Adicionar itens</string>
     <string name="adicione_itens">Adicione itens separados por espaço</string>
     <string name="adiciona_item">Adiciona Itens</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
