@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">einkaufen</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="empty_list">Lista Vazia</string>
+    <string name="oops_empty_list">Oooops! A sua lista está vazia!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="main_fragment">Lista:</string>
+    <string name="add_button">Adiciona</string>
+    <string name="add_items">Adicionar itens</string>
+    <string name="adicione_itens">Adicione itens separados por espaço</string>
+    <string name="adiciona_item">Adiciona Itens</string>
+</resources>
