@@ -2,22 +2,24 @@ package br.com.exp.einkaufen.view.viewmodel
 
 import android.text.Editable
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AddItemViewModel: ViewModel() {
 
     //lateinit var inputedText: String
-    private lateinit var _newItems: String
-    private lateinit var newItems: String
+    private var _newItems = MutableLiveData<String>()
+    val newItems: LiveData<String>
+        get() = _newItems
 
     init {
         Log.i(ADD_ITEM_VIEW_MODEL, "ViewModel criado!" )
     }
 
-    fun firstStep (texto: String){
+    fun firstStep (texto: MutableLiveData<String>){
         _newItems = texto
-        Log.i(ADD_ITEM_VIEW_MODEL, "Texto de entrada capturado!! = $_newItems")
+        Log.i(ADD_ITEM_VIEW_MODEL, "Texto de entrada capturado ===> ${newItems.value}")
     }
 
 

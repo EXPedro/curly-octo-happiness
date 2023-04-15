@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import br.com.exp.einkaufen.controller.AddItemController
@@ -33,6 +34,7 @@ class AddItem : Fragment() {
 
         // Inflate the layout for this fragment
         val binding = FragmentAddItemBinding.inflate(inflater, container, false)
+//        val binding = FragmentAddItemBinding.inflate(inflater, container, false)
 
         //Usando ViewModel, deve-se chamá-los usando uma classe chamada ViewModelProviders
         //que assegura que a instância certa está sendo utilizada
@@ -42,6 +44,8 @@ class AddItem : Fragment() {
 
         //viewModel.firstStep(texto)
         verificaEnter(binding.inputText, viewModel)
+
+
         //ajustaTamanhoDoTexto(binding.inputText, binding.buttonAdicionaItem)
         //mostraSoftTeclado()
         //toAddItemController = AddItemController()
@@ -61,26 +65,36 @@ class AddItem : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                try {
+                    val textoEntrada: String = s.toString()  //= s?.toString() ?: " "
 
-                val textoEntrada: String = s.toString()
+                    Log.i(
+                        ADD_ITEM,
+                        s?.get(s.length - 1).toString()
+                    )//TODO: tratar erro  java.lang.IndexOutOfBoundsException
 
-                if (s?.get(s.length - 1)?.equals( ' ', true) == true)
-                    Log.i(ADD_ITEM, "Espaço entered")
-                // Caso enter seja pressionado
-                if (s?.subSequence(start, start + 1).toString().equals("\n", ignoreCase = true)) {
-                    val editable: Editable =
-                        SpannableStringBuilder(s?.substring(0, s.length-1).toString())
+                    if (s?.get(s.length - 1)?.equals(' ', true) == true)
+                        Log.i(ADD_ITEM, "Espaço entered")
+                    // Caso enter seja pressionado
+                    if (s?.subSequence(start, start + 1).toString()
+                            .equals("\n", ignoreCase = true)
+                    ) {
+//                        val editable: Editable =
+//                            SpannableStringBuilder(s?.substring(0, s.length - 1).toString())
 
-                    Log.i(ADD_ITEM, "** Enter pressed **")
-                    texto.editText?.clearFocus()
-                    texto.editText?.text = editable
-                    //Log.i(ADD_ITEM, "TextSize = ${texto.editText?.textSize}")
-                    Log.i(ADD_ITEM, "mensagem = $textoEntrada")
-                    viewModel.firstStep(textoEntrada)
-                    //AddItemViewModel
-                    //texto.editText?.textSize = 24F
-                    //texto.editText?.removeTextChangedListener(this)
-                    //escondeSoftTeclado()
+                        Log.i(ADD_ITEM, "** Enter pressed **")
+                        //texto.editText?.clearFocus()
+                        //texto.editText?.text = editable
+                        //Log.i(ADD_ITEM, "TextSize = ${texto.editText?.textSize}")
+                        Log.i(ADD_ITEM, "mensagem = $textoEntrada")
+                        viewModel.firstStep(MutableLiveData(textoEntrada))
+                        //AddItemViewModel
+                        //texto.editText?.textSize = 24F
+                        //texto.editText?.removeTextChangedListener(this)
+                        //escondeSoftTeclado()
+                    }
+                } catch(ex: Exception){
+                    Log.e(ADD_ITEM, "onTextChanged error", )
                 }
             }
         }
