@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/medium_padding"
             android:layout_marginRight="@dimen/medium_padding"
-            android:hint="@string/adicione_itens"
+            android:hint="@string/text_input_add_items"
             app:boxStrokeColor="@color/black"
             app:endIconMode="clear_text"
             app:hintTextColor="@color/black"
@@ -39,7 +39,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine|textNoSuggestions"
                 android:textColor="@color/black"
-                android:textCursorDrawable="@null" />
+                android:textCursorDrawable="@null"
+                android:textSize="16sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

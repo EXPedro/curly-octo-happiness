@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import br.com.exp.einkaufen.controller.AddItemController
 import br.com.exp.einkaufen.databinding.FragmentAddItemBinding
@@ -23,7 +24,7 @@ class AddItem : Fragment() {
 
     //Declarando ViewModel utilizado nesse fragment
     private lateinit var viewModel: AddItemViewModel
-    private lateinit var aic: String
+    //private lateinit var toAddItemController: AddItemController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,40 +40,18 @@ class AddItem : Fragment() {
         Log.i(ADD_ITEM, "Chamado ViewModelProviders.of!")
         viewModel = ViewModelProviders.of(this).get(AddItemViewModel::class.java)
 
-        ajustaTamanhoDoTexto(binding.inputText, binding.buttonAdicionaItem)
-        mostraSoftTeclado()
-        verificaEnter(binding.inputText)
-
-        aic= AddItemController().capturaString( binding.inputText)
+        //viewModel.firstStep(texto)
+        verificaEnter(binding.inputText, viewModel)
+        //ajustaTamanhoDoTexto(binding.inputText, binding.buttonAdicionaItem)
+        //mostraSoftTeclado()
+        //toAddItemController = AddItemController()
+        //toAddItemController.verificaEnter(binding.inputText)
+        //aic= AddItemController().capturaString( binding.inputText)
 
         return binding.root
     }
 
-    private fun mostraSoftTeclado (){
-        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0)
-    }
-
-    private fun escondeSoftTeclado() {
-        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
-        //imm.hideSoftInputFromWindow(texto.windowToken, 0);
-    }
-
-    private fun ajustaTamanhoDoTexto(texto: TextInputLayout, buttonAdicionaItem: Button){
-        texto.editText?.setOnFocusChangeListener { view, b ->
-            // Ajusta o tamanho do texto, em sp
-            texto.editText?.textSize = 30F
-            //println("editText focus change")
-        }
-
-        buttonAdicionaItem.setOnFocusChangeListener { view, b ->
-            // Ajusta o tamanho do texto, em sp
-            texto.editText?.textSize = 24F
-        }
-    }
-
-    private fun verificaEnter(texto: TextInputLayout) {
+    fun verificaEnter(texto: TextInputLayout, viewModel: AddItemViewModel) {
         val textWatcher = object : TextWatcher {
 
             override fun afterTextChanged(s: Editable?) {
@@ -82,6 +61,8 @@ class AddItem : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                val textoEntrada: String = s.toString()
 
                 if (s?.get(s.length - 1)?.equals( ' ', true) == true)
                     Log.i(ADD_ITEM, "Espaço entered")
@@ -93,9 +74,13 @@ class AddItem : Fragment() {
                     Log.i(ADD_ITEM, "** Enter pressed **")
                     texto.editText?.clearFocus()
                     texto.editText?.text = editable
-                    texto.editText?.textSize = 24F
+                    //Log.i(ADD_ITEM, "TextSize = ${texto.editText?.textSize}")
+                    Log.i(ADD_ITEM, "mensagem = $textoEntrada")
+                    viewModel.firstStep(textoEntrada)
+                    //AddItemViewModel
+                    //texto.editText?.textSize = 24F
                     //texto.editText?.removeTextChangedListener(this)
-                    escondeSoftTeclado()
+                    //escondeSoftTeclado()
                 }
             }
         }

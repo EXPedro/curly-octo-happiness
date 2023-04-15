@@ -25,7 +25,7 @@ class MainFragment : Fragment() {
 //        }
 //        PODE SER SUBSTITUÍDO POR:
 
-        binding.addButtom.setOnClickListener(
+        binding.addMoreItems.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_mainFragment_to_addItem)
         )
 
