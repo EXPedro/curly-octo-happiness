@@ -50,30 +50,28 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/buttonCancelar"
+            android:id="@+id/buttonCancel"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_marginLeft="@dimen/medium_padding"
             android:layout_marginRight="@dimen/medium_padding"
-            android:focusableInTouchMode="true"
             android:fontFamily="@font/raleway_medium"
             android:text="@string/cancelar"
             android:textAllCaps="false"
-            app:layout_constraintBottom_toTopOf="@id/buttonAdicionaItem"
+            app:layout_constraintBottom_toTopOf="@id/buttonAddItem"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />
 
         <Button
-            android:id="@+id/buttonAdicionaItem"
+            android:id="@+id/buttonAddItem"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_marginLeft="@dimen/medium_padding"
             android:layout_marginRight="@dimen/medium_padding"
             android:layout_marginBottom="@dimen/medium_padding"
-            android:focusableInTouchMode="true"
             android:fontFamily="@font/raleway_medium"
             android:text="@string/adiciona_item"
             android:textAllCaps="false"
