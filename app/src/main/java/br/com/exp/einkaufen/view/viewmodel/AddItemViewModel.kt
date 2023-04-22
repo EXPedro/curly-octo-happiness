@@ -17,7 +17,7 @@ class AddItemViewModel: ViewModel() {
         Log.i(ADD_ITEM_VIEW_MODEL, "ViewModel criado!" )
     }
 
-    fun firstStep (texto: MutableLiveData<String>){
+    fun setInputText (texto: MutableLiveData<String>){
         _newItems = texto
         Log.i(ADD_ITEM_VIEW_MODEL, "Texto de entrada capturado ===> ${newItems.value}")
     }

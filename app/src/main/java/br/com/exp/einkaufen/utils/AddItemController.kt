@@ -1,10 +1,9 @@
-package br.com.exp.einkaufen.controller
+package br.com.exp.einkaufen.utils
 
 import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.util.Log
-import br.com.exp.einkaufen.view.AddItem
 import com.google.android.material.textfield.TextInputLayout
 
 class AddItemController() {
