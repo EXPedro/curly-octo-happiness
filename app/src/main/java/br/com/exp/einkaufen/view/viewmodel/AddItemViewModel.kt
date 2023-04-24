@@ -1,6 +1,5 @@
 package br.com.exp.einkaufen.view.viewmodel
 
-import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,6 +13,8 @@ class AddItemViewModel: ViewModel() {
         get() = _newItems
 
     init {
+        Log.i(ADD_ITEM_VIEW_MODEL, "..." )
+        Log.i(ADD_ITEM_VIEW_MODEL, "..." )
         Log.i(ADD_ITEM_VIEW_MODEL, "ViewModel criado!" )
     }
 

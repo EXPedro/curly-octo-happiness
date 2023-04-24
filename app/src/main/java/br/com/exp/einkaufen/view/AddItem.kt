@@ -10,10 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import br.com.exp.einkaufen.R
 import br.com.exp.einkaufen.databinding.FragmentAddItemBinding
@@ -37,13 +34,15 @@ class AddItem : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAddItemBinding.inflate(inflater, container, false)
 
-        Log.i(ADD_ITEM, "call ViewModelProviders.of!")
+        return binding.root
+    }
 
-        //Using ViewModel, you should call it with a class named ViewModelProviders
-        //that assures that the right instance is being used: the next line will
-        //assure that the data binding will be done correctly:
-        //viewModel = ViewModelProviders.of(this).get(AddItemViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        Log.i(ADD_ITEM, "Call lazy creation of ViewModel, after onViewCreated...")
+
+//        viewModel = ViewModelProviders.of(this).get(AddItemViewModel::class.java)
         binding.addItemViewModel = viewModel    //addItemViewModel is the link with xml
         binding.lifecycleOwner = this           //bind life cycle owner to this fragment
 
@@ -55,10 +54,11 @@ class AddItem : Fragment() {
 
         insertListeners(binding)
 
-        return binding.root
     }
 
     private fun insertListeners(addItemComponents: FragmentAddItemBinding){
+
+        Log.i(ADD_ITEM, "inserting Listeners...")
 
         //#Toolbar Navigation Icon
         addItemComponents.materialToolbar.setNavigationOnClickListener(
@@ -87,6 +87,10 @@ class AddItem : Fragment() {
                 Log.i(ADD_ITEM, "\\* canceled /*")
             }
         )
+
+        Log.i(ADD_ITEM, "...")
+        Log.i(ADD_ITEM, "...")
+        Log.i(ADD_ITEM, "Listeners inserted...")
 
     }
 

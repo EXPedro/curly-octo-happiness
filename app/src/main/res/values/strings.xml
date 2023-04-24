@@ -10,4 +10,5 @@
     <string name="text_input_add_items">Adicione itens separados por espaço</string>
     <string name="adiciona_item">Adiciona Itens</string>
     <string name="cancelar">Cancelar</string>
+    <string name="text_recyclerview">Laranja</string>
 </resources>
