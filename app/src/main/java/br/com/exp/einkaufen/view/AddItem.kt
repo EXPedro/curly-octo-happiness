@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import br.com.exp.einkaufen.R
 import br.com.exp.einkaufen.databinding.FragmentAddItemBinding
 import br.com.exp.einkaufen.utils.Utils
@@ -77,7 +78,10 @@ class AddItem : Fragment() {
 
                 Utils.createItem(Utils.createStringList(stringInputText))
 
-                Log.i(ADD_ITEM, "* button clicked *")
+                //one of 3 ways to use createNavigateOnClickListener
+                //https://developer.android.com/guide/navigation/navigation-navigate
+                //https://developer.android.com/reference/androidx/navigation/Navigation#createNavigateOnClickListener(int)
+                view?.findNavController()?.navigate(R.id.action_addItem_to_mainFragment)
             }
         )
 

@@ -13,9 +13,7 @@ class Utils {
         fun createStringList( textToConvert: String): List<String>{
 
             val stringList = textToConvert.split(" ")
-
             Log.i(UTILS, "createStringList: $stringList")
-
             return stringList
 
         }
@@ -27,7 +25,7 @@ class Utils {
                 ItemDataSource.insertItem(tempItem)
             }
 
-            Log.i(UTILS, "itemList: ${ItemDataSource.getList()} ")
+            Log.i(UTILS, "createItem: ${ItemDataSource.getList()} ")
 
         }
 
