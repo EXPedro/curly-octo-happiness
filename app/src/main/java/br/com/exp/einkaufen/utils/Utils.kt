@@ -1,11 +1,9 @@
 package br.com.exp.einkaufen.utils
 
-import android.util.Log
 import br.com.exp.einkaufen.datasource.ItemDataSource
 import br.com.exp.einkaufen.model.Item
 
 class Utils {
-
     companion object {
         const val UTILS = "Utils"
         private lateinit var tempItem: Item
@@ -19,7 +17,5 @@ class Utils {
                 tempItem = Item(index, string)
                 ItemDataSource.insertItem(tempItem)
             }
-
-
     }
 }
