@@ -10,20 +10,16 @@ class Utils {
         const val UTILS = "Utils"
         private lateinit var tempItem: Item
 
-        fun createStringList(textToConvert: String): List<String> {
+        fun createStringList( textToConvert: String ): List<String> =
+            textToConvert.split(" ")
 
-            return textToConvert.split(" ")
-
-        }
-
-        fun createItem(stringList: List<String>){
+        fun createItem( stringList: List<String> ) =
 
             stringList.mapIndexed { index, string ->
                 tempItem = Item(index, string)
                 ItemDataSource.insertItem(tempItem)
             }
 
-        }
 
     }
 }
