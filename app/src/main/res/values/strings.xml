@@ -8,7 +8,9 @@
     <string name="add_more_items_button">Adiciona</string>
     <string name="add_items">Adicionar itens</string>
     <string name="text_input_add_items">Adicione itens separados por espaço</string>
-    <string name="adiciona_item">Adiciona Itens</string>
-    <string name="cancelar">Cancelar</string>
+    <string name="add_item">Adiciona Itens</string>
+    <string name="cancel">Cancelar</string>
     <string name="text_recyclerview">Laranja</string>
+    <string name="item_edit">Editar</string>
+    <string name="item_delete">Deletar</string>
 </resources>
