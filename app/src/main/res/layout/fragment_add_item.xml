@@ -5,9 +5,10 @@
     tools:context=".view.AddItem">
 
     <data>
+
         <variable
             name="addItemViewModel"
-            type="br.com.exp.einkaufen.view.viewmodel.AddItemViewModel" />
+            type="br.com.exp.einkaufen.viewmodel.AddItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,10 +43,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine|textNoSuggestions"
+                android:text="@{addItemViewModel.newItems}"
                 android:textColor="@color/black"
                 android:textCursorDrawable="@null"
-                android:text="@{addItemViewModel.newItems}"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,12 +58,11 @@
             android:layout_marginLeft="@dimen/medium_padding"
             android:layout_marginRight="@dimen/medium_padding"
             android:fontFamily="@font/raleway_medium"
-            android:text="@string/cancelar"
+            android:text="@string/cancel"
             android:textAllCaps="false"
             app:layout_constraintBottom_toTopOf="@id/buttonAddItem"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/buttonAddItem"
@@ -73,12 +73,11 @@
             android:layout_marginRight="@dimen/medium_padding"
             android:layout_marginBottom="@dimen/medium_padding"
             android:fontFamily="@font/raleway_medium"
-            android:text="@string/adiciona_item"
+            android:text="@string/add_item"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-             />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

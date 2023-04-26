@@ -10,13 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResultListener
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import br.com.exp.einkaufen.R
 import br.com.exp.einkaufen.databinding.FragmentAddItemBinding
+import br.com.exp.einkaufen.datasource.ItemDataSource
 import br.com.exp.einkaufen.utils.Utils
-import br.com.exp.einkaufen.view.viewmodel.AddItemViewModel
+import br.com.exp.einkaufen.viewmodel.AddItemViewModel
 
 
 class AddItem : Fragment() {
@@ -41,15 +44,13 @@ class AddItem : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.i(ADD_ITEM, "Call lazy creation of ViewModel, after onViewCreated...")
-
-//        viewModel = ViewModelProviders.of(this).get(AddItemViewModel::class.java)
         binding.addItemViewModel = viewModel    //addItemViewModel is the link with xml
-        binding.lifecycleOwner = this           //bind life cycle owner to this fragment
+        binding.lifecycleOwner = this.viewLifecycleOwner   //bind life cycle owner to this fragment
 
         //Observe: Triggered by rotating screen
         viewModel.newItems.observe( viewLifecycleOwner) { newItem ->
-            binding.inputText.editText?.text = SpannableStringBuilder(newItem)
+            //binding.inputText.editText?.text = SpannableStringBuilder(newItem)
+            //binding.inputText.editText?.setText(newItem)
             Log.i(ADD_ITEM, "newItemObserved: $newItem")
         }
 
@@ -58,8 +59,6 @@ class AddItem : Fragment() {
     }
 
     private fun insertListeners(addItemComponents: FragmentAddItemBinding){
-
-        Log.i(ADD_ITEM, "inserting Listeners...")
 
         //#Toolbar Navigation Icon
         addItemComponents.materialToolbar.setNavigationOnClickListener(
@@ -72,29 +71,35 @@ class AddItem : Fragment() {
         )
 
         //## Button AddItem
-        addItemComponents.buttonAddItem.setOnClickListener (
-            View.OnClickListener {
-                stringInputText = addItemComponents.inputText.editText?.text.toString()
+        addItemComponents.buttonAddItem.setOnClickListener {
+            stringInputText = addItemComponents.inputText.editText?.text.toString()
 
-                Utils.createItem(Utils.createStringList(stringInputText))
+            Utils.createItem(Utils.createStringList(stringInputText))
 
-                //one of 3 ways to use createNavigateOnClickListener
-                //https://developer.android.com/guide/navigation/navigation-navigate
-                //https://developer.android.com/reference/androidx/navigation/Navigation#createNavigateOnClickListener(int)
-                view?.findNavController()?.navigate(R.id.action_addItem_to_mainFragment)
-            }
-        )
+            //one of 3 ways to use createNavigateOnClickListener
+            //https://developer.android.com/guide/navigation/navigation-navigate
+            //https://developer.android.com/reference/androidx/navigation/Navigation#createNavigateOnClickListener(int)
+            view?.findNavController()?.navigate(R.id.action_addItem_to_mainFragment)
+        }
 
         //## Button Cancel
-        addItemComponents.buttonCancel.setOnClickListener (
-            View.OnClickListener {
-                Log.i(ADD_ITEM, "\\* canceled /*")
-            }
-        )
+        addItemComponents.buttonCancel.setOnClickListener {
+            Log.i(ADD_ITEM, "\\* canceled /*")
+        }
 
-        Log.i(ADD_ITEM, "...")
-        Log.i(ADD_ITEM, "...")
-        Log.i(ADD_ITEM, "Listeners inserted...")
+        // Use the Kotlin extension in the fragment-ktx artifact
+        setFragmentResultListener("requestKey") { key, bundle ->
+            // We use a String here, but any type that can be put in a Bundle is supported
+            val result = bundle.getString("bundleKey")
+            if ( result != null) {
+                //ItemDataSource.findItemById(result.toInt()).let {
+                    //if (it != null) {
+                        binding.inputText.editText?.text = SpannableStringBuilder(result)
+                    //}
+                //}
+                Log.i("|||> ResultOfSetFragmentResultListener= ", result)
+            }
+        }
 
     }
 
@@ -114,27 +119,23 @@ class AddItem : Fragment() {
 
                 viewModel.setInputText(MutableLiveData(textoEntrada))
 
-                try {
-                    //TODO: tratar erro  java.lang.IndexOutOfBoundsException
-
-                    //#Space pressed:
-                    if (s?.get(s.length - 1)?.equals(' ', true) == true)
-                        Log.i(ADD_ITEM, "Espaço entered")
-
-                    //#Enter pressed:
-                    if (s?.subSequence(start, start + 1).toString()
-                    //if (s?.get(s.length - 1)?.equals('\n', ignoreCase = true) == true
-                            .equals("\n", ignoreCase = true)
-                    ) {
-                        Log.i(ADD_ITEM, "** Enter pressed **")
-                        //...
-                    }
-
-                } catch(ex: Exception){
-
-                    Log.e(ADD_ITEM, "onTextChanged error", )
-
-                }
+//                try {
+//                    //TODO: tratar erro  java.lang.IndexOutOfBoundsException
+//
+//                    //#Enter pressed:
+////                    if (s?.subSequence(start, start + 1).toString()
+////                    //if (s?.get(s.length - 1)?.equals('\n', ignoreCase = true) == true
+////                            .equals("\n", ignoreCase = true)
+////                    ) {
+////                        Log.i(ADD_ITEM, "** Enter pressed **")
+////                        //...
+////                    }
+//
+//                } catch(ex: Exception){
+//
+//                    Log.e(ADD_ITEM, "onTextChanged error")
+//
+//                }
 
             }
         }

@@ -9,7 +9,7 @@ data class Item(
         return if (other !is Item) {
             false
         }else {
-            other.item == this.item
+            other.item == this.item //&& other.id == this.id
         }
     }
 

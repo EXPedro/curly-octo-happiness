@@ -10,11 +10,9 @@ class Utils {
         const val UTILS = "Utils"
         private lateinit var tempItem: Item
 
-        fun createStringList( textToConvert: String): List<String>{
+        fun createStringList(textToConvert: String): List<String> {
 
-            val stringList = textToConvert.split(" ")
-            Log.i(UTILS, "createStringList: $stringList")
-            return stringList
+            return textToConvert.split(" ")
 
         }
 
@@ -24,8 +22,6 @@ class Utils {
                 tempItem = Item(index, string)
                 ItemDataSource.insertItem(tempItem)
             }
-
-            Log.i(UTILS, "createItem: ${ItemDataSource.getList()} ")
 
         }
 
