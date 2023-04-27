@@ -41,24 +41,27 @@ class MainFragment : Fragment() {
         }
 
         binding.recyclerViewList.adapter = adapter
+        
         adapter.listenerEdit = {
             val result = it.item
             setFragmentResult("requestKey", bundleOf("bundleKey" to result))
             view.findNavController().navigate(R.id.action_mainFragment_to_addItem)
+            ItemDataSource.updateItem( it )
+            //updateList()
         }
 
         adapter.listenerDelete = {
             ItemDataSource.deleteItem( it )
-            updateList()
+            //updateList()
             view.findNavController().navigate(R.id.action_mainFragment_self)
-            Log.w("myWARNING:", "listenerDelete clicked", )
+            Log.w("MainFragment:", "listenerDelete clicked", )
         }
 
     }
 
     private fun updateList() {
         adapter.submitList(ItemDataSource.getList())
-        Log.i("updateList", "updateList: ")
+        Log.i("MainFragment", "updateList() ")
     }
 
     // installed Navigation in build.gradle (app and project, for safeargs)

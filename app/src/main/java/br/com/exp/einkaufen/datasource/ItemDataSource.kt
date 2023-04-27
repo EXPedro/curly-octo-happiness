@@ -7,25 +7,26 @@ import kotlin.math.log
 object ItemDataSource {
 
     private val listOfItems = arrayListOf<Item>()
+    private const val ITEM_DATA_SOURCE = "ItemDataSource"
 
     fun getList() = listOfItems
 
     fun insertItem(item: Item){
 
         if ( !listOfItems.contains( item )) {
-            if ( item.id == 0 ) {
-                listOfItems.add( item )
-            }else {
-                listOfItems.remove( item )
-                listOfItems.add( item.copy( id = listOfItems.size + 1) )
-            }
+            listOfItems.add( item )
         }
 
     }
 
-    fun findItemById( itemId: Int ): Item? {
-        Log.i("findItemById", "$itemId" )
-        return listOfItems.find { it.id == itemId }
+    fun updateItem( item: Item){
+        findItemById( item.item )
+        listOfItems.remove( item )
+    }
+
+    private fun findItemById(itemId: String ): Item? {
+        Log.i(ITEM_DATA_SOURCE, "findItemById= $itemId" )
+        return listOfItems.find { it.item == itemId }
     }
 
     fun deleteItem(item: Item) {

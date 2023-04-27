@@ -28,7 +28,7 @@ class AddItem : Fragment() {
     private lateinit var stringInputText: String
 
     //viewModels lifecycle is this fragment, activityViewModels lifecycle is the main activity
-    private val viewModel: AddItemViewModel by activityViewModels()
+    private val viewModel: AddItemViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,6 +84,7 @@ class AddItem : Fragment() {
 
         //## Button Cancel
         addItemComponents.buttonCancel.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_addItem_to_mainFragment)
             Log.i(ADD_ITEM, "\\* canceled /*")
         }
 
@@ -92,12 +93,8 @@ class AddItem : Fragment() {
             // We use a String here, but any type that can be put in a Bundle is supported
             val result = bundle.getString("bundleKey")
             if ( result != null) {
-                //ItemDataSource.findItemById(result.toInt()).let {
-                    //if (it != null) {
-                        binding.inputText.editText?.text = SpannableStringBuilder(result)
-                    //}
-                //}
-                Log.i("|||> ResultOfSetFragmentResultListener= ", result)
+                binding.inputText.editText?.text = SpannableStringBuilder(result)
+                Log.i(ADD_ITEM, "setFragmentResultListener = $key")
             }
         }
 
@@ -145,6 +142,6 @@ class AddItem : Fragment() {
     }
 
     companion object {
-        private const val ADD_ITEM = "addItem"
+        private const val ADD_ITEM = "AddItem"
     }
 }
