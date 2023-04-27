@@ -20,11 +20,11 @@ object ItemDataSource {
     }
 
     fun updateItem( item: Item){
-        findItemById( item.item )
+        findItem( item.item )
         listOfItems.remove( item )
     }
 
-    private fun findItemById(itemId: String ): Item? {
+    private fun findItem(itemId: String ): Item? {
         Log.i(ITEM_DATA_SOURCE, "findItemById= $itemId" )
         return listOfItems.find { it.item == itemId }
     }
