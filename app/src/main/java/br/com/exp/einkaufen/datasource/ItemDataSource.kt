@@ -25,7 +25,6 @@ object ItemDataSource {
     }
 
     private fun findItem(itemId: String ): Item? {
-        Log.i(ITEM_DATA_SOURCE, "findItemById= $itemId" )
         return listOfItems.find { it.item == itemId }
     }
 
