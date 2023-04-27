@@ -14,7 +14,6 @@ import br.com.exp.einkaufen.databinding.FragmentMainBinding
 import br.com.exp.einkaufen.datasource.ItemDataSource
 
 class MainFragment : Fragment() {
-
     private lateinit var binding: FragmentMainBinding
     private val adapter by lazy { ItemListAdapter() }
 
@@ -22,17 +21,15 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        // Inflate the layout for this fragment
         binding = FragmentMainBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
-
         updateList()
+        binding.recyclerViewList.adapter = adapter
 
         binding.toAddItemFragment.setOnClickListener {
             val result = ""
@@ -40,19 +37,15 @@ class MainFragment : Fragment() {
             view.findNavController().navigate(R.id.action_mainFragment_to_addItem)
         }
 
-        binding.recyclerViewList.adapter = adapter
-        
         adapter.listenerEdit = {
             val result = it.item
             setFragmentResult("requestKey", bundleOf("bundleKey" to result))
             view.findNavController().navigate(R.id.action_mainFragment_to_addItem)
             ItemDataSource.updateItem( it )
-            //updateList()
         }
 
         adapter.listenerDelete = {
             ItemDataSource.deleteItem( it )
-            //updateList()
             view.findNavController().navigate(R.id.action_mainFragment_self)
             Log.w("MainFragment:", "listenerDelete clicked", )
         }
@@ -63,10 +56,4 @@ class MainFragment : Fragment() {
         adapter.submitList(ItemDataSource.getList())
         Log.i("MainFragment", "updateList() ")
     }
-
-    // installed Navigation in build.gradle (app and project, for safeargs)
-    // https://developer.android.com/jetpack/androidx/releases/navigation
-
-    // floating action button
-    // at https://developer.android.com/develop/ui/views/components/floating-action-button
 }

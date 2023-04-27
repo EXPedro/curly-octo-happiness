@@ -26,7 +26,6 @@ class AddItem : Fragment() {
 
     private lateinit var binding: FragmentAddItemBinding
     private lateinit var stringInputText: String
-
     //viewModels lifecycle is this fragment, activityViewModels lifecycle is the main activity
     private val viewModel: AddItemViewModel by viewModels()
 
@@ -34,8 +33,6 @@ class AddItem : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        // Inflate the layout for this fragment
         binding = FragmentAddItemBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -45,12 +42,10 @@ class AddItem : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.addItemViewModel = viewModel    //addItemViewModel is the link with xml
-        binding.lifecycleOwner = this.viewLifecycleOwner   //bind life cycle owner to this fragment
+        binding.lifecycleOwner = this.viewLifecycleOwner   //bind lifecycleowner to this fragment
 
         //Observe: Triggered by rotating screen
         viewModel.newItems.observe( viewLifecycleOwner) { newItem ->
-            //binding.inputText.editText?.text = SpannableStringBuilder(newItem)
-            //binding.inputText.editText?.setText(newItem)
             Log.i(ADD_ITEM, "newItemObserved: $newItem")
         }
 
@@ -60,7 +55,7 @@ class AddItem : Fragment() {
 
     private fun insertListeners(addItemComponents: FragmentAddItemBinding){
 
-        //#Toolbar Navigation Icon
+        //# Toolbar Navigation Icon
         addItemComponents.materialToolbar.setNavigationOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_addItem_to_mainFragment)
         )
@@ -73,12 +68,7 @@ class AddItem : Fragment() {
         //## Button AddItem
         addItemComponents.buttonAddItem.setOnClickListener {
             stringInputText = addItemComponents.inputText.editText?.text.toString()
-
             Utils.createItem(Utils.createStringList(stringInputText))
-
-            //one of 3 ways to use createNavigateOnClickListener
-            //https://developer.android.com/guide/navigation/navigation-navigate
-            //https://developer.android.com/reference/androidx/navigation/Navigation#createNavigateOnClickListener(int)
             view?.findNavController()?.navigate(R.id.action_addItem_to_mainFragment)
         }
 
@@ -88,9 +78,8 @@ class AddItem : Fragment() {
             Log.i(ADD_ITEM, "\\* canceled /*")
         }
 
-        // Use the Kotlin extension in the fragment-ktx artifact
+        //# Fragment result
         setFragmentResultListener("requestKey") { key, bundle ->
-            // We use a String here, but any type that can be put in a Bundle is supported
             val result = bundle.getString("bundleKey")
             if ( result != null) {
                 binding.inputText.editText?.text = SpannableStringBuilder(result)
@@ -101,7 +90,6 @@ class AddItem : Fragment() {
     }
 
     private fun updateText(): TextWatcher {
-
         val textWatcher = object : TextWatcher {
 
             override fun afterTextChanged(s: Editable?) {
@@ -111,34 +99,13 @@ class AddItem : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
                 val textoEntrada: String = s.toString()
-
                 viewModel.setInputText(MutableLiveData(textoEntrada))
-
-//                try {
-//                    //TODO: tratar erro  java.lang.IndexOutOfBoundsException
-//
-//                    //#Enter pressed:
-////                    if (s?.subSequence(start, start + 1).toString()
-////                    //if (s?.get(s.length - 1)?.equals('\n', ignoreCase = true) == true
-////                            .equals("\n", ignoreCase = true)
-////                    ) {
-////                        Log.i(ADD_ITEM, "** Enter pressed **")
-////                        //...
-////                    }
-//
-//                } catch(ex: Exception){
-//
-//                    Log.e(ADD_ITEM, "onTextChanged error")
-//
-//                }
-
             }
+
         }
 
         return textWatcher
-
     }
 
     companion object {

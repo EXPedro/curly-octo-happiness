@@ -13,8 +13,8 @@ class Utils {
 
         fun createItem( stringList: List<String> ) =
 
-            stringList.mapIndexed { _, string ->
-                tempItem = Item(stringList.size + 1, string)
+            stringList.mapIndexed { index, string ->
+                tempItem = Item(index, string)
                 ItemDataSource.insertItem(tempItem)
             }
     }

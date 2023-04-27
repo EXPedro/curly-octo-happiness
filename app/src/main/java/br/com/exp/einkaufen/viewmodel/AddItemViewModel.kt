@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AddItemViewModel: ViewModel() {
-
     private var _newItems = MutableLiveData<String>()
     val newItems: LiveData<String>
         get() = _newItems

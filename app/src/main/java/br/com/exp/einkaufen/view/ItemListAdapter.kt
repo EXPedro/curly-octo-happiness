@@ -16,11 +16,10 @@ class ItemListAdapter: ListAdapter< Item, ItemListAdapter.ItemViewHolder >( Diff
     var listenerDelete: (Item) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-
         val inflater = LayoutInflater.from( parent.context )
         val binding = ItemListBinding.inflate( inflater, parent, false)
-        return ItemViewHolder( binding )
 
+        return ItemViewHolder( binding )
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
