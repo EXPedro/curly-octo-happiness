@@ -2,7 +2,7 @@
     <string name="app_name">einkaufen</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="empty_list">Lista Vazia</string>
-    <string name="oops_empty_list">Oooops! A sua lista está vazia!</string>
+    <string name="oops_empty_list">Oooops! A lista está vazia!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="main_fragment">Lista:</string>
     <string name="add_more_items_button">Adiciona</string>
@@ -10,7 +10,7 @@
     <string name="text_input_add_items">Adicione itens separados por espaço</string>
     <string name="add_item">Adiciona Itens</string>
     <string name="cancel">Cancelar</string>
-    <string name="text_recyclerview">Laranja</string>
+    <string name="text_recyclerview">Abacate</string>
     <string name="item_edit">Editar</string>
     <string name="item_delete">Deletar</string>
 </resources>
