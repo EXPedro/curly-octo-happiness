@@ -2,7 +2,7 @@ package br.com.exp.einkaufen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import br.com.exp.einkaufen.view.EmptyList
+import br.com.exp.einkaufen.ui.EmptyList
 
 class MainActivity : AppCompatActivity() {
 

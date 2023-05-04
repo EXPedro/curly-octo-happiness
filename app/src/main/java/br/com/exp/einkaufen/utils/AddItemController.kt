@@ -58,13 +58,13 @@ class AddItemController() {
 //    }
 //
 //    private fun ajustaTamanhoDoTexto(texto: TextInputLayout, buttonAdicionaItem: Button){
-//        texto.editText?.setOnFocusChangeListener { view, b ->
+//        texto.editText?.setOnFocusChangeListener { ui, b ->
 //            // Ajusta o tamanho do texto, em sp
 //            texto.editText?.textSize = 30F
 //            //println("editText focus change")
 //        }
 //
-//        buttonAdicionaItem.setOnFocusChangeListener { view, b ->
+//        buttonAdicionaItem.setOnFocusChangeListener { ui, b ->
 //            // Ajusta o tamanho do texto, em sp
 //            texto.editText?.textSize = 24F
 //        }

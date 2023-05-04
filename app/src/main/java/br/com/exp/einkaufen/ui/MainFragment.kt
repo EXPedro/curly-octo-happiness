@@ -1,4 +1,4 @@
-package br.com.exp.einkaufen.view
+package br.com.exp.einkaufen.ui
 
 import android.os.Bundle
 import android.util.Log

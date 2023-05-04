@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="br.com.exp.einkaufen.view.MainFragment"
+        android:name="br.com.exp.einkaufen.ui.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/emptyList"
-        android:name="br.com.exp.einkaufen.view.EmptyList"
+        android:name="br.com.exp.einkaufen.ui.EmptyList"
         android:label="fragment_empty_list"
         tools:layout="@layout/fragment_empty_list" />
     <fragment
         android:id="@+id/addItem"
-        android:name="br.com.exp.einkaufen.view.AddItem"
+        android:name="br.com.exp.einkaufen.ui.AddItem"
         android:label="fragment_add_item"
         tools:layout="@layout/fragment_add_item" >
         <action
