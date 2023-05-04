@@ -41,11 +41,11 @@ class MainFragment : Fragment() {
             val result = it.item
             setFragmentResult("requestKey", bundleOf("bundleKey" to result))
             view.findNavController().navigate(R.id.action_mainFragment_to_addItem)
-            ItemDataSource.updateItem( it )
+            ItemDataSource.updateItem(it)
         }
 
         adapter.listenerDelete = {
-            ItemDataSource.deleteItem( it )
+            ItemDataSource.deleteItem(it)
             view.findNavController().navigate(R.id.action_mainFragment_self)
             Log.w("MainFragment:", "listenerDelete clicked", )
         }

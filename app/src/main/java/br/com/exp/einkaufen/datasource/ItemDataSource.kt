@@ -1,8 +1,6 @@
 package br.com.exp.einkaufen.datasource
 
-import android.util.Log
-import br.com.exp.einkaufen.model.Item
-import kotlin.math.log
+import br.com.exp.einkaufen.data.Item
 
 object ItemDataSource {
 
@@ -19,13 +17,13 @@ object ItemDataSource {
 
     }
 
-    fun updateItem( item: Item){
-        findItem( item.item )
-        listOfItems.remove( item )
+    fun updateItem(item: Item){
+        findItem(item)
+        listOfItems.remove(item)
     }
 
-    private fun findItem(itemId: String ): Item? {
-        return listOfItems.find { it.item == itemId }
+    private fun findItem(item: Item): Item? {
+        return listOfItems.find { it == item }
     }
 
     fun deleteItem(item: Item) {

@@ -6,6 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Item(
-    @PrimaryKey val id: Int,
-    @ColumnInfo(name = "item") val item: String?
-)
+//    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey val item: String
+){
+    override fun toString(): String {
+        return item
+    }
+}

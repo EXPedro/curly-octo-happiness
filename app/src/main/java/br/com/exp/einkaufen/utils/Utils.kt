@@ -1,7 +1,7 @@
 package br.com.exp.einkaufen.utils
 
 import br.com.exp.einkaufen.datasource.ItemDataSource
-import br.com.exp.einkaufen.model.Item
+import br.com.exp.einkaufen.data.Item
 
 class Utils {
     companion object {
@@ -13,8 +13,8 @@ class Utils {
 
         fun createItem( stringList: List<String> ) =
 
-            stringList.mapIndexed { index, string ->
-                tempItem = Item(index, string)
+            stringList.map { string ->
+                tempItem = Item(string)
                 ItemDataSource.insertItem(tempItem)
             }
     }
