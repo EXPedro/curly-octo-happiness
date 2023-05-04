@@ -1,4 +1,4 @@
-package br.com.exp.einkaufen.viewmodel
+package br.com.exp.einkaufen.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData

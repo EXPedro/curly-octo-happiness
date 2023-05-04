@@ -8,7 +8,7 @@
 
         <variable
             name="addItemViewModel"
-            type="br.com.exp.einkaufen.viewmodel.AddItemViewModel" />
+            type="br.com.exp.einkaufen.ui.viewmodel.AddItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

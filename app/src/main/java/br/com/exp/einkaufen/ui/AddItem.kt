@@ -17,7 +17,7 @@ import androidx.navigation.findNavController
 import br.com.exp.einkaufen.R
 import br.com.exp.einkaufen.databinding.FragmentAddItemBinding
 import br.com.exp.einkaufen.utils.Utils
-import br.com.exp.einkaufen.viewmodel.AddItemViewModel
+import br.com.exp.einkaufen.ui.viewmodel.AddItemViewModel
 
 
 class AddItem : Fragment() {
