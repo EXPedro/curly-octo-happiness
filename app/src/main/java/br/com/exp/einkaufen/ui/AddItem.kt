@@ -1,5 +1,6 @@
 package br.com.exp.einkaufen.ui
 
+import android.app.Application
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableStringBuilder
@@ -14,7 +15,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import br.com.exp.einkaufen.App
 import br.com.exp.einkaufen.R
+import br.com.exp.einkaufen.data.Item
 import br.com.exp.einkaufen.databinding.FragmentAddItemBinding
 import br.com.exp.einkaufen.utils.Utils
 import br.com.exp.einkaufen.ui.viewmodel.AddItemViewModel
@@ -32,7 +35,6 @@ class AddItem : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddItemBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -46,6 +48,7 @@ class AddItem : Fragment() {
         viewModel.newItems.observe( viewLifecycleOwner) { newItem ->
             Log.i(ADD_ITEM, "newItemObserved: $newItem")
         }
+//        viewModel.
 
         insertListeners(binding)
 
@@ -66,7 +69,14 @@ class AddItem : Fragment() {
         //## Button AddItem
         addItemComponents.buttonAddItem.setOnClickListener {
             stringInputText = addItemComponents.inputText.editText?.text.toString()
-            Utils.createItem(Utils.createStringList(stringInputText))
+            var listaItens: List<Item> =
+                Utils.createItem(Utils.createStringList(stringInputText))
+
+            listaItens.forEach { item ->
+                run {
+                    viewModel.addItem(item)
+                }
+            }
             view?.findNavController()?.navigate(R.id.action_addItem_to_mainFragment)
         }
 

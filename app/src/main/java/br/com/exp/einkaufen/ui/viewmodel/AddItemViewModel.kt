@@ -2,18 +2,18 @@ package br.com.exp.einkaufen.ui.viewmodel
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import androidx.room.RoomDatabase
 import br.com.exp.einkaufen.data.AppDatabase
 import br.com.exp.einkaufen.data.Item
 import br.com.exp.einkaufen.data.ItemRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class AddItemViewModel(application: Application): AndroidViewModel(application) {
-    private val repository: ItemRepository = TODO()
+class AddItemViewModel(application: Application): ViewModel() {
+    private val repository: ItemRepository
     private var readAll: LiveData<List<Item>>
+
     private var _newItems = MutableLiveData<String>()
     val newItems: LiveData<String>
         get() = _newItems
@@ -21,12 +21,22 @@ class AddItemViewModel(application: Application): AndroidViewModel(application) 
     init {
         val db = AppDatabase.getDatabase(application).itemDao()
         repository = ItemRepository(db)
-//        readAll = (repository.getAll())
+        readAll = repository.getAll()
         Log.i(ADD_ITEM_VIEW_MODEL, "ViewModel criado!" )
     }
 
     fun setInputText (texto: MutableLiveData<String>){
         _newItems = texto
+    }
+
+    fun addItem(item: Item){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.insert(item)
+        }
+    }
+
+    fun getAll(){
+        readAll
     }
 
     override fun onCleared() {
@@ -38,3 +48,4 @@ class AddItemViewModel(application: Application): AndroidViewModel(application) 
         private const val ADD_ITEM_VIEW_MODEL = "AddItemViewModel"
     }
 }
+
