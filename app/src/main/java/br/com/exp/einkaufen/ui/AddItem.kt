@@ -10,9 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import br.com.exp.einkaufen.App
@@ -21,6 +23,7 @@ import br.com.exp.einkaufen.data.Item
 import br.com.exp.einkaufen.databinding.FragmentAddItemBinding
 import br.com.exp.einkaufen.utils.Utils
 import br.com.exp.einkaufen.ui.viewmodel.AddItemViewModel
+import br.com.exp.einkaufen.ui.viewmodel.AddItemViewModelFactory
 
 
 class AddItem : Fragment() {
@@ -28,7 +31,7 @@ class AddItem : Fragment() {
     private lateinit var binding: FragmentAddItemBinding
     private lateinit var stringInputText: String
     //viewModels lifecycle is this fragment, activityViewModels lifecycle is the main activity
-    private val viewModel: AddItemViewModel by viewModels()
+    private lateinit var viewModel: AddItemViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +43,12 @@ class AddItem : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Pass in the Application context as a constructor argument
+        val appContext = activity?.applicationContext as Application
+        viewModel = ViewModelProviders.of(
+            this, AddItemViewModelFactory(appContext)).get(AddItemViewModel::class.java)
+
 
         binding.addItemViewModel = viewModel    //addItemViewModel is the link with xml
         binding.lifecycleOwner = this.viewLifecycleOwner   //bind lifecycleowner to this fragment
