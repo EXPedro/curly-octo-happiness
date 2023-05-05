@@ -13,5 +13,5 @@ class ItemRepository(private val dao: ItemDao) {
         }
     }
 
-    fun getAll(): LiveData<List<Item>> = dao.getAll()
+    fun getAll(): List<Item> = dao.getAll()
 }

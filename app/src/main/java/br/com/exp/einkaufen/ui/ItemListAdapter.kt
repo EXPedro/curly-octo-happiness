@@ -28,7 +28,7 @@ class ItemListAdapter: ListAdapter< Item, ItemListAdapter.ItemViewHolder >( Diff
 
     inner class ItemViewHolder (
         private val binding: ItemListBinding
-    ): RecyclerView.ViewHolder( binding.root ){
+    ): RecyclerView.ViewHolder(binding.root){
 
         fun bind(item: Item) {
             binding.recyclerViewText.text = item.toString()

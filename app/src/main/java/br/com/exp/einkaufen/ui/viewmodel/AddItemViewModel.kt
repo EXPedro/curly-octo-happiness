@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class AddItemViewModel(application: Application): ViewModel() {
     private val repository: ItemRepository
-    private var readAll: LiveData<List<Item>>
+    private var readAll: List<Item>
 
     private var _newItems = MutableLiveData<String>()
     val newItems: LiveData<String>
@@ -35,8 +35,8 @@ class AddItemViewModel(application: Application): ViewModel() {
         }
     }
 
-    fun getAll(){
-        readAll
+    fun getAll(): List<Item> {
+        return readAll
     }
 
     override fun onCleared() {

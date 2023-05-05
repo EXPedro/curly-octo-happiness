@@ -10,7 +10,7 @@ import br.com.exp.einkaufen.data.Item
 @Dao
 interface ItemDao {
     @Query("SELECT * FROM data_items")
-    fun getAll(): LiveData<List<Item>>
+    fun getAll(): List<Item>
 
 //    @Query("SELECT * FROM produtos_db WHERE item = (:item) ")
 //    fun findByName(item: Item): Item
