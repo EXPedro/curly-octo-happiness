@@ -52,9 +52,8 @@ class AddItem : Fragment() {
 
         //Observe: Triggered by rotating screen
         viewModel.newItems.observe( viewLifecycleOwner) { newItem ->
-            Log.i(ADD_ITEM, "newItemObserved: $newItem")
+
         }
-//        viewModel.
 
         insertListeners(binding)
 
@@ -89,7 +88,6 @@ class AddItem : Fragment() {
         //## Button Cancel
         addItemComponents.buttonCancel.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_addItem_to_mainFragment)
-            Log.i(ADD_ITEM, "\\* canceled /*")
         }
 
         //# Fragment result
@@ -97,7 +95,6 @@ class AddItem : Fragment() {
             val result = bundle.getString("bundleKey")
             if ( result != null) {
                 binding.inputText.editText?.text = SpannableStringBuilder(result)
-                Log.i(ADD_ITEM, "setFragmentResultListener = $key")
             }
         }
 
@@ -120,9 +117,5 @@ class AddItem : Fragment() {
         }
 
         return textWatcher
-    }
-
-    companion object {
-        private const val ADD_ITEM = "AddItem"
     }
 }

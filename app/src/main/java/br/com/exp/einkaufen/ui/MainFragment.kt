@@ -59,13 +59,11 @@ class MainFragment : Fragment() {
         adapter.listenerDelete = {
             viewModel.deleteItem(it)
             view.findNavController().navigate(R.id.action_mainFragment_self)
-            Log.w("MainFragment:", "listenerDelete clicked", )
         }
 
     }
 
     private fun updateList() {
         adapter.submitList(viewModel.getAll())
-        Log.i("MainFragment", "updateList() ")
     }
 }

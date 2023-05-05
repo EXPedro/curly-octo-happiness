@@ -1,11 +1,10 @@
 package br.com.exp.einkaufen.ui.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import br.com.exp.einkaufen.data.AppDatabase
-import br.com.exp.einkaufen.model.Item
 import br.com.exp.einkaufen.data.ItemRepository
+import br.com.exp.einkaufen.model.Item
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -21,7 +20,6 @@ class AddItemViewModel(application: Application): ViewModel() {
         val db = AppDatabase.getDatabase(application).itemDao()
         repository = ItemRepository(db)
         readAll = repository.getAll()
-        Log.i(ADD_ITEM_VIEW_MODEL, "ViewModel criado!" )
     }
 
     fun setInputText (texto: MutableLiveData<String>){
@@ -51,14 +49,6 @@ class AddItemViewModel(application: Application): ViewModel() {
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        Log.i(ADD_ITEM_VIEW_MODEL, "AddItemViewModel destruído!")
-    }
-
-    companion object {
-        private const val ADD_ITEM_VIEW_MODEL = "AddItemViewModel"
-    }
 }
 
 class AddItemViewModelFactory(private val app: Application) : ViewModelProvider.Factory {
