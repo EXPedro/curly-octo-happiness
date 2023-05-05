@@ -10,7 +10,7 @@ import br.com.exp.einkaufen.R
 import br.com.exp.einkaufen.databinding.ItemListBinding
 import br.com.exp.einkaufen.model.Item
 
-class ItemListAdapter: ListAdapter< Item, ItemListAdapter.ItemViewHolder >( DiffCallback() ) {
+class ItemListAdapter: ListAdapter<Item, ItemListAdapter.ItemViewHolder >( DiffCallback() ) {
 
     var listenerEdit: (Item) -> Unit = {}
     var listenerDelete: (Item) -> Unit = {}
@@ -19,25 +19,25 @@ class ItemListAdapter: ListAdapter< Item, ItemListAdapter.ItemViewHolder >( Diff
         val inflater = LayoutInflater.from( parent.context )
         val binding = ItemListBinding.inflate( inflater, parent, false)
 
-        return ItemViewHolder( binding )
+        return ItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind( getItem( position ) )
+        holder.bind(getItem(position))
     }
 
     inner class ItemViewHolder (
         private val binding: ItemListBinding
-    ): RecyclerView.ViewHolder( binding.root ){
+    ): RecyclerView.ViewHolder(binding.root){
 
         fun bind(item: Item) {
-            binding.recyclerViewText.text = item.item
+            binding.recyclerViewText.text = item.toString()
             binding.menuMore.setOnClickListener {
-                showPopUp( item )
+                showPopUp(item)
             }
         }
 
-        private fun showPopUp( item: Item ) {
+        private fun showPopUp( item: Item) {
             val menuMore = binding.menuMore
             val popupMenu = PopupMenu(menuMore.context, menuMore)
             popupMenu.menuInflater.inflate( R.menu.popup_menu, popupMenu.menu)
@@ -55,10 +55,10 @@ class ItemListAdapter: ListAdapter< Item, ItemListAdapter.ItemViewHolder >( Diff
     }
 }
 
-class DiffCallback: DiffUtil.ItemCallback< Item >() {
+class DiffCallback: DiffUtil.ItemCallback<Item>() {
 
     override fun areItemsTheSame(oldItem: Item, newItem: Item) = oldItem == newItem
 
-    override fun areContentsTheSame(oldItem: Item, newItem: Item) = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: Item, newItem: Item) = oldItem == newItem
 
 }

@@ -5,7 +5,6 @@
     tools:context=".ui.AddItem">
 
     <data>
-
         <variable
             name="addItemViewModel"
             type="br.com.exp.einkaufen.ui.viewmodel.AddItemViewModel" />
