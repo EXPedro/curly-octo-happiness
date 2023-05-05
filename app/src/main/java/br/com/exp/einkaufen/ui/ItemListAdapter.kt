@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.exp.einkaufen.R
 import br.com.exp.einkaufen.databinding.ItemListBinding
-import br.com.exp.einkaufen.data.Item
+import br.com.exp.einkaufen.model.Item
 
-class ItemListAdapter: ListAdapter< Item, ItemListAdapter.ItemViewHolder >( DiffCallback() ) {
+class ItemListAdapter: ListAdapter<Item, ItemListAdapter.ItemViewHolder >( DiffCallback() ) {
 
     var listenerEdit: (Item) -> Unit = {}
     var listenerDelete: (Item) -> Unit = {}
@@ -37,7 +37,7 @@ class ItemListAdapter: ListAdapter< Item, ItemListAdapter.ItemViewHolder >( Diff
             }
         }
 
-        private fun showPopUp( item: Item ) {
+        private fun showPopUp( item: Item) {
             val menuMore = binding.menuMore
             val popupMenu = PopupMenu(menuMore.context, menuMore)
             popupMenu.menuInflater.inflate( R.menu.popup_menu, popupMenu.menu)
@@ -55,7 +55,7 @@ class ItemListAdapter: ListAdapter< Item, ItemListAdapter.ItemViewHolder >( Diff
     }
 }
 
-class DiffCallback: DiffUtil.ItemCallback< Item >() {
+class DiffCallback: DiffUtil.ItemCallback<Item>() {
 
     override fun areItemsTheSame(oldItem: Item, newItem: Item) = oldItem == newItem
 

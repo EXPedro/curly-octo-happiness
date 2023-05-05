@@ -1,7 +1,6 @@
 package br.com.exp.einkaufen.utils
 
-import br.com.exp.einkaufen.datasource.ItemDataSource
-import br.com.exp.einkaufen.data.Item
+import br.com.exp.einkaufen.model.Item
 
 class Utils {
     companion object {
@@ -16,7 +15,7 @@ class Utils {
 
             stringList.map { string ->
                 tempItem = Item(string)
-                ItemDataSource.insertItem(tempItem)
+//                ItemDataSource.insertItem(tempItem)
                 createdItens.add(tempItem)
             }
 

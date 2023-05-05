@@ -12,9 +12,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import br.com.exp.einkaufen.R
-import br.com.exp.einkaufen.data.Item
 import br.com.exp.einkaufen.databinding.FragmentMainBinding
-import br.com.exp.einkaufen.datasource.ItemDataSource
 import br.com.exp.einkaufen.ui.viewmodel.AddItemViewModel
 import br.com.exp.einkaufen.ui.viewmodel.AddItemViewModelFactory
 
@@ -56,12 +54,10 @@ class MainFragment : Fragment() {
             setFragmentResult("requestKey", bundleOf("bundleKey" to result))
             view.findNavController().navigate(R.id.action_mainFragment_to_addItem)
             viewModel.updateItem(it)
-//            ItemDataSource.updateItem(it)
         }
 
         adapter.listenerDelete = {
             viewModel.deleteItem(it)
-//            ItemDataSource.deleteItem(it)
             view.findNavController().navigate(R.id.action_mainFragment_self)
             Log.w("MainFragment:", "listenerDelete clicked", )
         }
@@ -70,7 +66,6 @@ class MainFragment : Fragment() {
 
     private fun updateList() {
         adapter.submitList(viewModel.getAll())
-//        adapter.submitList(ItemDataSource.getList())
         Log.i("MainFragment", "updateList() ")
     }
 }

@@ -1,8 +1,7 @@
 package br.com.exp.einkaufen.data
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import br.com.exp.einkaufen.data.Item
+import br.com.exp.einkaufen.model.Item
 
 @Dao
 interface ItemDao {

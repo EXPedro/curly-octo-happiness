@@ -1,6 +1,6 @@
 package br.com.exp.einkaufen.datasource
 
-import br.com.exp.einkaufen.data.Item
+import br.com.exp.einkaufen.model.Item
 
 object ItemDataSource {
 

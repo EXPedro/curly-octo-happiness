@@ -10,16 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import br.com.exp.einkaufen.App
 import br.com.exp.einkaufen.R
-import br.com.exp.einkaufen.data.Item
+import br.com.exp.einkaufen.model.Item
 import br.com.exp.einkaufen.databinding.FragmentAddItemBinding
 import br.com.exp.einkaufen.utils.Utils
 import br.com.exp.einkaufen.ui.viewmodel.AddItemViewModel

@@ -3,9 +3,8 @@ package br.com.exp.einkaufen.ui.viewmodel
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import androidx.room.RoomDatabase
 import br.com.exp.einkaufen.data.AppDatabase
-import br.com.exp.einkaufen.data.Item
+import br.com.exp.einkaufen.model.Item
 import br.com.exp.einkaufen.data.ItemRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

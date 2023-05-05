@@ -1,6 +1,6 @@
 package br.com.exp.einkaufen.data
 
-import androidx.lifecycle.LiveData
+import br.com.exp.einkaufen.model.Item
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
