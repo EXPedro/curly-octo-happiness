@@ -39,6 +39,12 @@ class AddItemViewModel(application: Application): ViewModel() {
         return readAll
     }
 
+    fun deleteItem(item: Item){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.delete(item)
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         Log.i(ADD_ITEM_VIEW_MODEL, "AddItemViewModel destruído!")

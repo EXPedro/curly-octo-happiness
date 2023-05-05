@@ -18,6 +18,6 @@ interface ItemDao {
     @Insert
     fun insert(item: Item)
 
-//    @Delete
-//    fun delete(item: Item)
+    @Delete
+    fun delete(item: Item)
 }

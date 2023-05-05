@@ -59,7 +59,8 @@ class MainFragment : Fragment() {
         }
 
         adapter.listenerDelete = {
-            ItemDataSource.deleteItem(it)
+            viewModel.deleteItem(it)
+//            ItemDataSource.deleteItem(it)
             view.findNavController().navigate(R.id.action_mainFragment_self)
             Log.w("MainFragment:", "listenerDelete clicked", )
         }

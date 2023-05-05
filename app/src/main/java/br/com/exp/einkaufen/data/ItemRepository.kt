@@ -13,5 +13,11 @@ class ItemRepository(private val dao: ItemDao) {
         }
     }
 
+    fun delete(item: Item) = runBlocking {
+        launch(Dispatchers.IO){
+            dao.delete(item)
+        }
+    }
+
     fun getAll(): List<Item> = dao.getAll()
 }
