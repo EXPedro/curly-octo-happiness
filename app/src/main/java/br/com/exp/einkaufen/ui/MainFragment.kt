@@ -55,7 +55,8 @@ class MainFragment : Fragment() {
             val result = it.item
             setFragmentResult("requestKey", bundleOf("bundleKey" to result))
             view.findNavController().navigate(R.id.action_mainFragment_to_addItem)
-            ItemDataSource.updateItem(it)
+            viewModel.updateItem(it)
+//            ItemDataSource.updateItem(it)
         }
 
         adapter.listenerDelete = {

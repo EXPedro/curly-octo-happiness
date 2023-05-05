@@ -39,6 +39,13 @@ class AddItemViewModel(application: Application): ViewModel() {
         return readAll
     }
 
+    fun updateItem(item: Item){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.delete(item)
+            repository.update(item)
+        }
+    }
+
     fun deleteItem(item: Item){
         viewModelScope.launch (Dispatchers.IO){
             repository.delete(item)

@@ -13,6 +13,12 @@ class ItemRepository(private val dao: ItemDao) {
         }
     }
 
+    fun update(item: Item) = runBlocking {
+        launch(Dispatchers.IO){
+            dao.update(item)
+        }
+    }
+
     fun delete(item: Item) = runBlocking {
         launch(Dispatchers.IO){
             dao.delete(item)
